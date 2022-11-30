@@ -97,7 +97,7 @@ export default function UserEditScreen() {
       <h1>Edit User {userId}</h1>
 
       {loading ? (
-        <LoadingBox></LoadingBox>
+        <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (

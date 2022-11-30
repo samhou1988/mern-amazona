@@ -12,8 +12,7 @@ import { getError } from '../utils';
 export default function SigninScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/';
+  const redirect = new URLSearchParams(search).get('redirect') || '/';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +28,7 @@ export default function SigninScreen() {
       });
       ctxDispatch({ type: 'USER_SIGNIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
-      navigate(redirect || '/');
+      navigate(redirect);
     } catch (err) {
       toast.error(getError(err));
     }

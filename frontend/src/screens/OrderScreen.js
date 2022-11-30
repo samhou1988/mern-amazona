@@ -49,8 +49,9 @@ function reducer(state, action) {
   }
 }
 export default function OrderScreen() {
-  const { state } = useContext(Store);
-  const { userInfo } = state;
+  const { state: {
+    userInfo
+  } } = useContext(Store);
 
   const params = useParams();
   const { id: orderId } = params;

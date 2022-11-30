@@ -1,7 +1,5 @@
 import { createContext, useReducer } from 'react';
 
-export const Store = createContext();
-
 const initialState = {
   fullBox: false,
   userInfo: localStorage.getItem('userInfo')
@@ -35,8 +33,8 @@ function reducer(state, action) {
       );
       const cartItems = existItem
         ? state.cart.cartItems.map((item) =>
-            item._id === existItem._id ? newItem : item
-          )
+          item._id === existItem._id ? newItem : item
+        )
         : [...state.cart.cartItems, newItem];
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
@@ -91,6 +89,8 @@ function reducer(state, action) {
       return state;
   }
 }
+
+export const Store = createContext();
 
 export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);

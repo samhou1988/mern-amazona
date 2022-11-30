@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -30,6 +30,7 @@ function HomeScreen() {
   // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
+      // dispatch(action)
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get("/api/products");
@@ -57,7 +58,7 @@ function HomeScreen() {
           <Row>
             {products.map((product) => (
               <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-                <Product product={product}></Product>
+                <Product product={product} />
               </Col>
             ))}
           </Row>
